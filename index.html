@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFlow | Study Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <h1>FocusFlow</h1>
+        <button id="theme-toggle" type="button">Toggle Theme</button>
+    </header>
+
+    <main class="dashboard">
+
+        <section class="welcome">
+            <h2>Welcome Back!</h2>
+            <p>Stay focused. Make progress. One session at a time.</p>
+        </section>
+
+       
+<section class="timer-card">
+    <h2>Pomodoro Clock</h2>
+    <p id="timer-mode">Ready to Focus</p>
+
+    <div class="analog-clock">
+        <svg
+            class="clock-face"
+            viewBox="0 0 220 220"
+            role="img"
+            aria-label="Analog clock showing real time and study session progress"
+        >
+        <!-- Clock numbers -->
+
+            <!-- Session progress ring -->
+            <circle
+                class="progress-track"
+                cx="110"
+                cy="110"
+                r="98"
+            />
+
+            <circle
+                id="progress-arc"
+                class="progress-arc"
+                cx="110"
+                cy="110"
+                r="98"
+            />
+
+            <!-- Clock face -->
+            <circle
+                class="clock-dial"
+                cx="110"
+                cy="110"
+                r="83"
+            />
+
+<g class="clock-numbers" fill="currentColor">
+    <text x="110" y="43">12</text>
+    <text x="144" y="55">1</text>
+    <text x="165" y="80">2</text>
+    <text x="176" y="110">3</text>
+    <text x="165" y="140">4</text>
+    <text x="144" y="165">5</text>
+    <text x="110" y="177">6</text>
+    <text x="76" y="165">7</text>
+    <text x="55" y="140">8</text>
+    <text x="44" y="110">9</text>
+    <text x="55" y="80">10</text>
+    <text x="76" y="55">11</text>
+</g>
+
+            <!-- Clock hands -->
+            <line id="hour-hand"
+                class="clock-hand hour-hand"
+                x1="110" y1="110" x2="110" y2="67" />
+
+            <line id="minute-hand"
+                class="clock-hand minute-hand"
+                x1="110" y1="110" x2="110" y2="48" />
+
+            <line id="second-hand"
+                class="clock-hand second-hand"
+                x1="110" y1="119" x2="110" y2="39" />
+
+            <circle class="clock-center"
+                cx="110" cy="110" r="5" />
+        </svg>
+    </div>
+
+    <p class="clock-current-time">
+        Current time: <span id="current-time">--:--:--</span>
+    </p>
+
+    <div class="session-times">
+        <div>
+            <span>Started</span>
+            <strong id="session-start">Not started</strong>
+        </div>
+
+        <div>
+            <span>Finishes</span>
+            <strong id="session-finish">--:--</strong>
+        </div>
+    </div>
+
+    <div class="timer-controls">
+        <button id="start-btn" type="button">Start</button>
+        <button id="pause-btn" type="button">Pause</button>
+        <button id="reset-btn" type="button">Reset</button>
+        <button id="skip-btn" type="button">Skip</button>
+    </div>
+</section>
+
+        <section class="stats">
+            <article class="stat-card">
+                <h3>Completed Sessions</h3>
+                <p id="sessions">0</p>
+            </article>
+
+            <article class="stat-card">
+                <h3>Focused Minutes</h3>
+                <p id="minutes">0</p>
+            </article>
+        </section>
+
+        
+<section class="tasks-card">
+    <h2>My Study Tasks</h2>
+
+    <div class="task-input">
+        <input
+            type="text"
+            id="task-input"
+            placeholder="Enter a study task..."
+        >
+        <button id="add-task-btn" type="button">Add Task</button>
+    </div>
+
+    <ul id="task-list"></ul>
+</section>
+
+<section class="goal-card">
+    <h2>Daily Study Goal</h2>
+    <p><span id="goal-progress">0</span> / 60 minutes</p>
+
+    <div class="progress-track">
+        <div id="progress-bar"></div>
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <p>FocusFlow Study Dashboard</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

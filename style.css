@@ -1,0 +1,565 @@
+
+/* =========================
+   1. THEME VARIABLES
+========================= */
+
+:root {
+    color-scheme: dark;
+
+    --bg: #0b171a;
+    --surface: #142629;
+    --surface-hover: #1b3438;
+    --text: #e8f3f1;
+    --muted: #9bb4b2;
+    --accent: #40d6b0;
+    --accent-text: #08231d;
+    --border: #294246;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+body.light {
+    color-scheme: light;
+
+    --bg: #f1f7f6;
+    --surface: #ffffff;
+    --surface-hover: #e3f2ef;
+    --text: #183332;
+    --muted: #617b78;
+    --accent: #087f6b;
+    --accent-text: #ffffff;
+    --border: #d5e5e1;
+    --shadow: 0 8px 24px rgba(25, 65, 58, 0.07);
+}
+
+/* =========================
+   2. RESET AND BASE STYLES
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+
+    display: flex;
+    flex-direction: column;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* =========================
+   3. TOP HEADER
+========================= */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 18px 6%;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+#theme-toggle {
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-hover);
+    color: var(--text);
+    transition: background-color 0.2s ease;
+}
+
+#theme-toggle:hover {
+    background: var(--border);
+}
+
+/* =========================
+   4. MAIN DASHBOARD
+========================= */
+
+.dashboard {
+    width: min(100% - 40px, 1000px);
+    margin: 0 auto;
+    padding: 36px 0;
+
+    display: grid;
+    gap: 24px;
+}
+
+.welcome h2 {
+    margin: 0 0 6px;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+}
+
+.welcome p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* =========================
+   5. CARDS
+========================= */
+
+.timer-card,
+.stat-card,
+.tasks-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.timer-card {
+    text-align: center;
+}
+
+.timer-card h2,
+.tasks-card h2 {
+    margin-top: 0;
+}
+
+/* =========================
+   6. TIMER DISPLAY
+========================= */
+
+#timer {
+    margin: 20px 0;
+    font-size: clamp(3.5rem, 10vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+}
+
+/* =========================
+   7. TIMER BUTTONS
+========================= */
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.timer-controls button {
+    min-width: 100px;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-hover);
+    color: var(--text);
+    transition:
+        transform 0.15s ease,
+        background-color 0.2s ease;
+}
+
+.timer-controls button:hover {
+    transform: translateY(-2px);
+    background: var(--border);
+}
+
+#start-btn {
+    background: var(--accent);
+    color: var(--accent-text);
+    border-color: var(--accent);
+    font-weight: 700;
+}
+
+#start-btn:hover {
+    filter: brightness(1.08);
+}
+
+/* =========================
+   8. STATISTICS
+========================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.stat-card h3 {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.stat-card p {
+    margin: 12px 0 0;
+    color: var(--accent);
+    font-size: 2.4rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* =========================
+   9. STUDY TASKS
+========================= */
+
+.tasks-card p {
+    margin-bottom: 0;
+    color: var(--muted);
+}
+
+/* =========================
+   10. FOOTER
+========================= */
+
+footer {
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* =========================
+   11. RESPONSIVE LAYOUT
+========================= */
+
+@media (min-width: 900px) {
+    .dashboard {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    .welcome {
+        grid-column: 1 / -1;
+    }
+
+    .timer-card {
+        grid-column: 1 / -1;
+    }
+
+    .stats {
+        align-self: stretch;
+    }
+
+    .tasks-card {
+        min-height: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .topbar {
+        padding: 14px 20px;
+    }
+
+    .topbar h1 {
+        font-size: 1.25rem;
+    }
+
+    .dashboard {
+        width: calc(100% - 28px);
+        padding: 24px 0;
+        gap: 18px;
+    }
+
+    .timer-card,
+    .stat-card,
+    .tasks-card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .stats {
+        gap: 12px;
+    }
+
+    .stat-card h3 {
+        font-size: 0.85rem;
+    }
+
+    .stat-card p {
+        font-size: 2rem;
+    }
+
+    .timer-controls {
+        gap: 8px;
+    }
+
+    .timer-controls button {
+        min-width: 0;
+        flex: 1;
+        padding: 10px 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* DAILY STUDY GOAL */
+
+.goal-card {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: 16px;
+    margin-top: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.progress-track {
+    width: 100%;
+    height: 12px;
+    background: var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+
+/* STUDY TASKS */
+
+.task-input {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.task-input input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#task-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin-top: 8px;
+    background: var(--bg-color);
+    border-radius: 8px;
+}
+
+#task-list li span {
+    flex: 1;
+    overflow-wrap: anywhere;
+}
+
+#task-list li.completed span {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+#task-list li button {
+    padding: 6px 10px;
+}
+
+@media (max-width: 480px) {
+    .task-input {
+        flex-direction: column;
+    }
+}
+
+
+
+/* =========================
+   ANALOG POMODORO CLOCK
+========================= */
+
+.analog-clock {
+    width: min(100%, 300px);
+    margin: 20px auto;
+}
+
+.clock-face {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Clock dial */
+.clock-dial {
+    fill: var(--bg-color);
+    stroke: var(--border-color);
+    stroke-width: 2;
+}
+
+/* Progress ring background */
+.progress-track,
+.progress-arc {
+    fill: none;
+    stroke-width: 7;
+}
+
+.progress-track {
+    stroke: var(--border-color);
+}
+
+.progress-arc {
+    stroke: var(--accent);
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 110px 110px;
+    stroke-dasharray: 615.75;
+    stroke-dashoffset: 615.75;
+    transition: stroke-dashoffset 0.3s linear;
+}
+
+/* Hour markers */
+.clock-markers {
+    stroke: var(--text-color);
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+/* Clock hands */
+.clock-hand {
+    stroke-linecap: round;
+    transform-origin: 110px 110px;
+}
+.second-hand {
+    stroke: #ffffff;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+.hour-hand {
+    stroke: #ffffff;
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+.minute-hand {
+    stroke: #d3d3d3;
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.clock-hand {
+    transform-origin: 110px 110px;
+}
+
+.clock-center {
+    fill: var(--accent);
+}
+
+/* Current time */
+.clock-current-time {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Session start and finish */
+.session-times {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.session-times div {
+    padding: 14px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.session-times span {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.session-times strong {
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+}
+
+#timer-mode {
+    text-align: center;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+@media (max-width: 480px) {
+    .analog-clock {
+        max-width: 250px;
+    }
+
+    .session-times strong {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* NUMBERS ON ANALOG CLOCK */
+
+.clock-numbers {
+    fill: #d3d3d3 !important;
+    font-family: Arial, sans-serif;
+    font-size: 12px !important;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
